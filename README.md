@@ -1,0 +1,42 @@
+# ofxOpenCvTracker
+
+![sample](sample_images/sample.gif)
+## Description
+ofxOpenCvTracker is a realtime object tracking addon for openframeworks.
+
+Tracker sample is included opencv_contrib. I built opencv with contrib library and made it easier to use on Openframeworks. Here is a link to learn opencv tracking module. https://www.learnopencv.com/object-tracking-using-opencv-cpp-python/
+
+
+## Usage
+See Examples for more details
+
+### camera example
+Realtime tracking example on webcam video image by mouse operation.
+
+## Install
+### 1. Clone ofxOpenCvTracker to your of/addon directory
+    $ git clone https://github.com/TetsuakiBaba/ofxOpenCvTracker.git
+### 2. Download OpenCV.framework to ofxOpenCvDnnObjectDetection/libs directory. 
+    $ curl -O https://tetsuakibaba.jp/tmp/opencv2.framework.zip
+    $ unzip opencv2.framework.zip
+   
+Or you may build your own opencv2.framework from opencv source. ( https://tetsuakibaba.jp/ws/doku.php?id=opencv_dnn:opencv2.framework )
+
+## Getting Started with Examples/single_image.
+### 1. Update single_image with the projectGenerator.
+### 2. Run, nothing special. 
+
+## Compatibility
+- only macOS ( tested on Mojave)
+- of version: 0.10.1
+
+## Licence
+- Source Code: [MIT](https://opensource.org/licenses/MIT)
+- Video by Coverr from Pexels (https://www.pexels.com/video/black-and-white-video-of-people-853889/)
+
+## Author
+[TetsuakiBaba](https://github.com/TetsuakiBaba)
+
+## Reference
+1. opencv_contrib: https://github.com/opencv/opencv_contrib
+
