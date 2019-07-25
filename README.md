@@ -22,8 +22,8 @@ Realtime tracking example on webcam video image by mouse operation.
    
 Or you may build your own opencv2.framework from opencv source. ( https://tetsuakibaba.jp/ws/doku.php?id=opencv_dnn:opencv2.framework )
 
-## Getting Started with Examples/single_image.
-### 1. Update single_image with the projectGenerator.
+## Getting Started with Examples/camera
+### 1. Update camera with the projectGenerator.
 ### 2. Run, nothing special. 
 
 ## Compatibility
