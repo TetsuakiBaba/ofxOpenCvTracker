@@ -16,7 +16,7 @@ Realtime tracking example on webcam video image by mouse operation.
 ## Install
 ### 1. Clone ofxOpenCvTracker to your of/addon directory
     $ git clone https://github.com/TetsuakiBaba/ofxOpenCvTracker.git
-### 2. Download OpenCV.framework to ofxOpenCvDnnObjectDetection/libs directory. 
+### 2. Download OpenCV.framework to ofxOpenCvTracker/libs directory. 
     $ curl -O https://tetsuakibaba.jp/tmp/opencv2.framework.zip
     $ unzip opencv2.framework.zip
    
