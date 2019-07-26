@@ -1,1 +1,1 @@
-ofxOpenCvDnnTracker
+ofxOpenCvTracker
