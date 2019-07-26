@@ -1,6 +1,7 @@
 # ofxOpenCvTracker
 
 <img src="sample_images/sample.gif" width="100%">
+
 ## Description
 ofxOpenCvTracker is a realtime object tracking addon for openframeworks.
 
