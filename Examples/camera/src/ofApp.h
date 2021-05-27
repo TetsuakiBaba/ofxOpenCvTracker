@@ -17,4 +17,5 @@ public:
     ofVideoGrabber camera;
     vector<ofxOpenCvTracker> tracker;
     ofRectangle r;
+    uint64_t tracking_time;
 };

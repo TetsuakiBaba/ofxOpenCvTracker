@@ -18,8 +18,8 @@ Realtime tracking example on webcam video image by mouse operation.
 ### 1. Clone ofxOpenCvTracker to your of/addon directory
     $ git clone https://github.com/TetsuakiBaba/ofxOpenCvTracker.git
 ### 2. Download OpenCV.framework to ofxOpenCvTracker/libs directory. 
-    $ curl -O https://tetsuakibaba.jp/tmp/opencv2.framework.zip
-    $ unzip opencv2.framework.zip
+    $ curl -O https://tetsuakibaba.jp/tmp/opencv2.framework.arm64.zip
+    $ unzip opencv2.framework.arm64.zip
    
 Or you may build your own opencv2.framework from opencv source. ( https://tetsuakibaba.jp/ws/doku.php?id=opencv_dnn:opencv2.framework )
 
@@ -28,8 +28,8 @@ Or you may build your own opencv2.framework from opencv source. ( https://tetsua
 ### 2. Run, nothing special. 
 
 ## Compatibility
-- only macOS ( tested on Mojave)
-- of version: 0.10.1
+- macOS(arm64)
+- of version: 0.11.2
 
 ## Licence
 - Source Code: [MIT](https://opensource.org/licenses/MIT)

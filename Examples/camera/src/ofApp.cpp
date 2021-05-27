@@ -6,7 +6,7 @@ void ofApp::setup(){
     ofSetFrameRate(60);
     // setup camera
 
-    camera.setDeviceID( 0 );
+    camera.setDeviceID( 1 );
     camera.setDesiredFrameRate( 30 );
     camera.initGrabber( 1280, 720 );
     ofSetWindowShape(camera.getWidth(), camera.getHeight());
@@ -18,9 +18,11 @@ void ofApp::setup(){
 void ofApp::update(){
     camera.update();
     if( camera.isFrameNew() ){
+        uint64_t t0 = ofGetElapsedTimeMillis();
         for( int i = 0; i < tracker.size(); i++){
             tracker[i].update(camera.getPixels());
         }
+        tracking_time = ofGetElapsedTimeMillis()-t0;
     }
 
 }
@@ -42,6 +44,9 @@ void ofApp::draw(){
             ofDrawRectangle(r);
             ofDrawBitmapStringHighlight("["+ofToString(i)+"]:"+tracker[i].tracker_name,
                                         r.x, r.y-6);
+            ofDrawBitmapStringHighlight("Tracking Time: "+ofToString(tracking_time),
+                                        20,20);
+            
 
         }
         else{

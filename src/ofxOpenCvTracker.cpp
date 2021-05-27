@@ -26,6 +26,23 @@ void ofxOpenCvTracker::update(ofPixels &_p)
 {
     if( tracker ){
         is_found = tracker->update(toCV(_p), bb);
+        tracker_image_width = image_width = _p.getWidth();
+        tracker_image_height = image_height = _p.getHeight();
+        
+    }
+
+}
+void ofxOpenCvTracker::update(ofPixels &_p, int _tracker_image_width, int _tracker_image_height)
+{
+    if( tracker ){
+        ofImage img;
+        image_width = _p.getWidth();
+        image_height = _p.getHeight();
+        img.setFromPixels(_p);
+        img.resize(_tracker_image_width, _tracker_image_height);
+        is_found = tracker->update(toCV(img.getPixels()), bb);
+        tracker_image_width = _tracker_image_width;
+        tracker_image_height = _tracker_image_height;
     }
 }
 
@@ -43,7 +60,15 @@ cv::Mat ofxOpenCvTracker::toCV(ofPixels &pix)
 ofRectangle ofxOpenCvTracker::getTrackerRectangle()
 {
     ofRectangle r_tracker;
-    r_tracker.set(bb.x, bb.y, bb.width, bb.height);
+    if(image_width == tracker_image_width &&
+       image_height == tracker_image_height ){
+        r_tracker.set(bb.x, bb.y, bb.width, bb.height);
+    }
+    else{
+        float rate_x = image_width/(float)tracker_image_width;
+        float rate_y = image_height/(float)tracker_image_height;
+        r_tracker.set(bb.x*rate_x, bb.y*rate_y, bb.width*rate_x, bb.height*rate_y);
+    }
     return r_tracker;
 }
 void ofxOpenCvTracker::set(ofPixels &_p, ofRectangle _r)
@@ -53,9 +78,44 @@ void ofxOpenCvTracker::set(ofPixels &_p, ofRectangle _r)
     bb.height = _r.height;
     bb.x = _r.x;
     bb.y = _r.y;
-
+    
     tracker = createTrackerByName(tracker_name);
 
     tracker->init(toCV(_p), bb);
     is_found = tracker->update(toCV(_p), bb);
 }
+
+void ofxOpenCvTracker::set(ofPixels &_p, ofRectangle _r,
+                           int _tracker_image_width, int _tracker_image_height)
+{
+    image_width = _p.getWidth();
+    image_height = _p.getHeight();
+    tracker_image_width = _tracker_image_width;
+    tracker_image_height = _tracker_image_height;
+    
+    _r.standardize();
+    if(image_width == tracker_image_width &&
+       image_height == tracker_image_height ){
+        bb.width = _r.width;
+        bb.height = _r.height;
+        bb.x = _r.x;
+        bb.y = _r.y;
+    }
+    else{
+        float rate_x = tracker_image_width/(float)image_width;
+        float rate_y = tracker_image_height/(float)image_height;
+        bb.width = _r.width*rate_x;
+        bb.height = _r.height*rate_y;
+        bb.x = _r.x*rate_x;
+        bb.y = _r.y*rate_y;
+    }
+    
+    tracker = createTrackerByName(tracker_name);
+    
+    ofImage img;
+    img.setFromPixels(_p);
+    img.resize(_tracker_image_width, _tracker_image_height);
+    tracker->init(toCV(img.getPixels()), bb);
+    is_found = tracker->update(toCV(img.getPixels()), bb);
+}
+
