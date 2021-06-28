@@ -51,11 +51,14 @@ public:
     void update(ofPixels &_p, int _tracker_image_width, int _tracker_image_height);
     void set(ofPixels &_p, ofRectangle _r);
     void set(ofPixels &_p, ofRectangle _r, int _tracker_image_width, int _tracker_image_height);
+    void setRectangle(ofRectangle _r, ofPixels &_p);
+    void setName(string _name);
     ofRectangle getTrackerRectangle();
     bool getFound();
     cv::Mat toCV(ofPixels &pix);
 
     string tracker_name;
+    string name;
     cv::Ptr<Tracker> tracker;
     cv::Rect bb;
     ofRectangle r_selected;

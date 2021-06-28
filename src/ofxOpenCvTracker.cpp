@@ -83,6 +83,24 @@ void ofxOpenCvTracker::set(ofPixels &_p, ofRectangle _r)
 
     tracker->init(toCV(_p), bb);
     is_found = tracker->update(toCV(_p), bb);
+    name = "undefined";
+}
+
+void ofxOpenCvTracker::setRectangle(ofRectangle _r, ofPixels &_p){
+    bb.width = _r.width;
+    bb.height = _r.height;
+    bb.x = _r.x;
+    bb.y = _r.y;
+    tracker.reset();
+    tracker.release();
+    tracker = createTrackerByName(tracker_name);
+    tracker->init(toCV(_p), bb);
+    tracker->update(toCV(_p), bb);
+}
+
+void ofxOpenCvTracker::setName(string _name)
+{
+    name = _name;
 }
 
 void ofxOpenCvTracker::set(ofPixels &_p, ofRectangle _r,
